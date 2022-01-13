@@ -56,7 +56,7 @@ export const Navbar = () => {
             <nav>
                 <div className="top-div nav-top menu-nav row">
                     <div className="col">
-                        <h2 className="text-dark">Cards list g g</h2>
+                        <h2 className="text-dark">Cards list</h2>
                     </div>
                     <div className="col justify-content-end align-last">
                         <button

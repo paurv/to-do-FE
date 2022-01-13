@@ -13,10 +13,9 @@ const initialState = {
     activeNote: null
 }
 
-type Action = { type: 'Add_note', payload: string } |
-                {type: 'Load_notes', payload: any[] }
+type Action = { type: 'Add_note', payload: string } | {type: 'Load_notes', payload: any[] };
 
-export const notesReducer = (state: INotesState = initialState, action: Action) => {
+export const notesReducer = (state: any = initialState, action: Action) => {
     switch ( action.type ) {
         case 'Add_note': {
             return {
