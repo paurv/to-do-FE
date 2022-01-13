@@ -1,0 +1,111 @@
+html,
+body {
+  /* background-color: #21232a; */
+  background-color: #f9f9fb;
+  font-family: Arial, Helvetica, sans-serif;
+}
+button {
+  font-size: 1.3rem;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+/* ---------------- Dashboard ---------------- */
+.dashboard-top {
+  padding-top: 8rem;
+}
+
+/* ---------------- navbar ---------------- */
+.todo-nav {
+  position: fixed;
+  z-index: 100;
+  width: -webkit-fill-available;
+}
+.menu-nav {
+  position: fixed;
+  width: -webkit-fill-available;
+  z-index: 50;
+  background: #f9f9fb;
+}
+.nav-top {
+  padding-top: 4.5rem !important;
+  padding: 0 4rem;
+}
+
+/* ---------------- Cards list ---------------- */
+.align-last {
+  text-align-last: end;
+}
+
+/* ---------------- Notes list ---------------- */
+.td-cards {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* ---------------- to do ---------------- */
+.wrap-todo {
+  overflow-wrap: anywhere;
+}
+.center-btn {
+  place-self: center;
+}
+
+/* ---------------- Bootstrap css ---------------- */
+.list-group-item {
+  /* border: 1px solid rgb(74 74 74 / 13%); */
+  border: transparent !important;
+  border-left: transparent !important;
+  border-right: transparent !important;
+}
+.btn-light {
+  color: #000;
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+/* ---------------- Mansonry css ---------------- */
+.my-masonry-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: -30px;
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 30px;
+  background-clip: padding-box;
+}
+.my-masonry-grid_column > div {
+  background: yellow;
+  margin-bottom: 30px;
+}
+
+/* Modal */
+.modal.display-block {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1055;
+  display: block !important;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+  padding-top: 15%;
+  background: #00000099;
+}
+
+.modal.display-none {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1055;
+  display: none !important;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+}
