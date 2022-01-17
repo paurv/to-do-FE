@@ -82,7 +82,7 @@ button {
 }
 
 /* Modal */
-.modal.display-block {
+.modal.display-block.animate__animated.animate__fadeIn {
   position: fixed;
   top: 0;
   left: 0;
@@ -95,17 +95,23 @@ button {
   outline: 0;
   padding-top: 15%;
   background: #00000099;
+
+  /* opacity: 1;
+  transition: opacity 2s linear; */
 }
 
-.modal.display-none {
+.modal.display-none.animate__animated.animate__fadeOut {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1055;
-  display: none !important;
+  /* display: none !important; */
   width: 100%;
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
   outline: 0;
+
+  /* opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear; */
 }
