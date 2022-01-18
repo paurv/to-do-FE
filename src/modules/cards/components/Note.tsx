@@ -1,6 +1,26 @@
 import { Todo } from "./Todo";
+import { SetStateAction, useState } from "react";
 
 export const Notes = ({ note }: any) => {
+	const [list, setlist] = useState(note.todolist);
+	const [description, setDescription] = useState('');
+
+	function handleChange(event: { target: { value: SetStateAction<string> } }) {
+		console.log(event.target.value);
+		setDescription(event.target.value);
+	}
+
+	function handleAdd() {
+		let listClone = [...list];
+		const newData = { desc: description, done: false };
+		listClone.push(newData);
+		setlist(listClone);
+		
+		setDescription('');
+
+		// Actualizar render
+	}
+
 	return (
 		<div>
 			<div className="card-component">
@@ -31,7 +51,29 @@ export const Notes = ({ note }: any) => {
 								))}
 							</div>
 						</div>
-						<input type="text" className="form-control mt-1" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Add item" />
+						<div>
+							<div className="d-flex flex-row align-items-baseline">
+							  	<div className="flex-fill" style={{ marginRight: "6px" }}>
+									<input 
+										type="text" 
+										className="form-control form-control-sm mt-1" 
+										aria-describedby="inputGroup-sizing-sm" 
+										placeholder="Add item" 
+										value={ description } 
+										onChange={ handleChange }
+									/>
+							  	</div>
+							  	<div className="flex-fill">
+									<button 
+										type="button" 
+										className="btn btn-primary btn-sm" 
+										onClick={ handleAdd }
+									>
+										Add
+									</button>
+							  	</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

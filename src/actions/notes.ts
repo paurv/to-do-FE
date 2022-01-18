@@ -3,7 +3,7 @@ import { fetchToken } from '../helpers/fetch';
 export const startLoadingNotes = () => {
     return async (dispatch: any) => {
         try {
-            localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MWUwY2QzMDUwNGNmNDcwZTEyODk4ZTQiLCJpYXQiOjE2NDIzODc1MzYsImV4cCI6MTY0MjQ3MzkzNn0.2O3CV007-_SJADCUpgIwA5ypea_nk2wmDZdr7P0Rp0M');
+            localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MWUwY2QzMDUwNGNmNDcwZTEyODk4ZTQiLCJpYXQiOjE2NDI0OTM0MjMsImV4cCI6MTY0MjU3OTgyM30.ArDPlyKZIS0fRIqmcbUnUOg8ewdY3zsYaSWylC5E6ZM');
             const uid = '61e0cd30504cf470e12898e4';
             const res: any = await fetchToken(`notes/${uid}`);
             const body: any = await res.json();
