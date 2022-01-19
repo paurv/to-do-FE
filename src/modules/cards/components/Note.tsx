@@ -1,24 +1,36 @@
 import { Todo } from "./Todo";
 import { SetStateAction, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setActiveNote, startAddingToDo } from "../../../actions/notes";
+import { INotes } from '../../../reducers/notesReducers';
 
-export const Notes = ({ note }: any) => {
-	const [list, setlist] = useState(note.todolist);
+export interface IToDo {
+	desc: string;
+	done: boolean;
+}
+
+export const Notes = ({ note }: { note: INotes }) => {
+	// const [list, setlist] = useState(note.todolist);
 	const [description, setDescription] = useState('');
+	const dispatch = useDispatch();
 
 	function handleChange(event: { target: { value: SetStateAction<string> } }) {
-		console.log(event.target.value);
 		setDescription(event.target.value);
 	}
 
-	function handleAdd() {
-		let listClone = [...list];
+	const handleAdd = ( description: string, note: any ) => {
+		// // let listClone = [...list];
+		if ( description === '' ) { return }
+
+		dispatch(setActiveNote(note));
 		const newData = { desc: description, done: false };
-		listClone.push(newData);
-		setlist(listClone);
+		// // listClone.push(newData);
+		// // setlist(listClone);
+
+		dispatch(startAddingToDo(newData));
 		
 		setDescription('');
 
-		// Actualizar render
 	}
 
 	return (
@@ -67,7 +79,7 @@ export const Notes = ({ note }: any) => {
 									<button 
 										type="button" 
 										className="btn btn-primary btn-sm" 
-										onClick={ handleAdd }
+										onClick={ () => {handleAdd(description, note)} }
 									>
 										Add
 									</button>
