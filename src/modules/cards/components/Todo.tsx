@@ -1,14 +1,24 @@
 import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
+import { deleteToDo, setActiveNote, updateCheck } from '../../../actions/notes';
 
-export const Todo = ({ initialValue, onUpdate = () => { } }: any) => {
+export const Todo = ({ initialValue, noteObj, selectedItem, onUpdate = () => { } }: any) => {
+	
 	const [todo, setTodo] = useState(initialValue);
-	function onCheck(e: any) {
-		// Call API
-		// OK 200
-		// Update state local
+	const dispatch = useDispatch();
+
+	function handleCheck(e: { target: { checked: any; }; }) {
 		setTodo({ ...todo, done: Boolean(e.target.checked) });
+		dispatch(setActiveNote(noteObj));
+		dispatch(updateCheck(selectedItem))
 	}
 
+	const handleDeleteNote = () => {		
+		dispatch(setActiveNote(noteObj));
+		dispatch(deleteToDo(selectedItem));
+	}
+
+	// usar use selector
 	return (
 		<div className="d-flex flex-row">
 			<div className="me-auto d-flex">
@@ -19,7 +29,7 @@ export const Todo = ({ initialValue, onUpdate = () => { } }: any) => {
 							type="checkbox"
 							value={todo.done.toString()}
 							checked={todo.done}
-							onChange={onCheck}
+							onChange={ handleCheck }
 						/>
 					</div>
 					<div
@@ -30,7 +40,11 @@ export const Todo = ({ initialValue, onUpdate = () => { } }: any) => {
 				</label>
 			</div>
 			<div className="center-btn">
-				<button type="button" className="btn btn-light btn-sm">
+				<button 
+					type="button" 
+					className="btn btn-light btn-sm"
+					onClick={ handleDeleteNote }
+				>
 					<i className="bi bi-x"></i>
 				</button>
 			</div>
