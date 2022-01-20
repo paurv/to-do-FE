@@ -23,7 +23,7 @@ export const Todo = ({ initialValue, noteObj, selectedItem, onUpdate = () => { }
 	useEffect(() => {
 		dispatch(startLoadingNotes());
 	}, [dispatch]);
-	
+
 	// usar use selector
 	return (
 		<div className="d-flex flex-row">
@@ -39,9 +39,11 @@ export const Todo = ({ initialValue, noteObj, selectedItem, onUpdate = () => { }
 						/>
 					</div>
 					<div
-						className={'flex-grow-1 text-wrap wrap-todo ' + (todo.done === true ? "text-decoration-line-through" : "")}
+						// className={'flex-grow-1 text-wrap wrap-todo ' + (todo.done === true ? "text-decoration-line-through" : "")}
+						className={'flex-grow-1 text-wrap wrap-todo ' + (initialValue?.done === true ? "text-decoration-line-through" : "")}
 					>
-						{todo.desc}
+						{/* {todo.desc} */}
+						{initialValue?.desc}
 					</div>
 				</label>
 			</div>

@@ -73,6 +73,10 @@ export const deleteToDo = ( todoItem: any ) => {
             ...activeNote,
             todolist: [ ...activeNote.todolist ]
         }
+        // // const updateNote: INotes = {
+        // //     ...activeNote,
+        // //     todolist: activeNote.todolist.filter((t: any) => t._id !== todoItem._id)
+        // // }
         dispatch( startUpdatingNote(updateNote) );
         
     }
