@@ -1,14 +1,25 @@
 import React, { useState } from "react";
+import { useDispatch } from 'react-redux';
+import { deleteToDo, setActiveNote } from "../../../actions/notes";
 
-export const Todo = ({ initialValue, onUpdate = () => { } }: any) => {
+export const Todo = ({ initialValue, noteObj, onUpdate = () => { } }: any) => {
+	
 	const [todo, setTodo] = useState(initialValue);
+	const dispatch = useDispatch();
+
 	function onCheck(e: any) {
-		// Call API
-		// OK 200
-		// Update state local
+		console.log('on check: ', e);
 		setTodo({ ...todo, done: Boolean(e.target.checked) });
 	}
 
+	const handleDeleteNote = ( itemToDelete: any ) => {
+
+		dispatch(setActiveNote(noteObj));
+		dispatch(deleteToDo(itemToDelete));
+
+	}
+
+	// usar use selector
 	return (
 		<div className="d-flex flex-row">
 			<div className="me-auto d-flex">
@@ -30,7 +41,11 @@ export const Todo = ({ initialValue, onUpdate = () => { } }: any) => {
 				</label>
 			</div>
 			<div className="center-btn">
-				<button type="button" className="btn btn-light btn-sm">
+				<button 
+					type="button" 
+					className="btn btn-light btn-sm"
+					onClick={ () => {handleDeleteNote(todo)} }
+				>
 					<i className="bi bi-x"></i>
 				</button>
 			</div>

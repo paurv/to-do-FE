@@ -10,7 +10,7 @@ export interface IToDo {
 }
 
 export const Notes = ({ note }: { note: INotes }) => {
-	// const [list, setlist] = useState(note.todolist);
+	
 	const [description, setDescription] = useState('');
 	const dispatch = useDispatch();
 
@@ -19,14 +19,10 @@ export const Notes = ({ note }: { note: INotes }) => {
 	}
 
 	const handleAdd = ( description: string, note: any ) => {
-		// // let listClone = [...list];
-		if ( description === '' ) { return }
 
+		if ( description === '' ) { return }
 		dispatch(setActiveNote(note));
 		const newData = { desc: description, done: false };
-		// // listClone.push(newData);
-		// // setlist(listClone);
-
 		dispatch(startAddingToDo(newData));
 		
 		setDescription('');
@@ -54,11 +50,9 @@ export const Notes = ({ note }: { note: INotes }) => {
 							<div className="list-group">
 								{note.todolist.map((todo: any, idxToDo: number) => (
 									<Todo
-										initialValue={todo}
-										key={idxToDo}
-									// onUpdate={(todo: any) => {
-									//   console.log(todo);
-									// }}
+										initialValue={ todo }
+										noteObj={ note }
+										key={ idxToDo }
 									/>
 								))}
 							</div>

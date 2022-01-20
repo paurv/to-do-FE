@@ -1,9 +1,9 @@
-const baseUrl = 'http://localhost:8888';
+export const PORT = 'http://localhost:8888' || process.env.PORT;
 
 
 export const fetchData = (endpoint: string, data?: any, method = 'GET') => {
 
-    const url = `${baseUrl}/${endpoint}`;
+    const url = `${ PORT }/${ endpoint }`;
 
     if (method === 'GET') {
         return fetch(url);
@@ -19,7 +19,8 @@ export const fetchData = (endpoint: string, data?: any, method = 'GET') => {
 }
 
 export const fetchToken = (endpoint: any, data?: any, method = 'GET') => {
-    const url = `${baseUrl}/${endpoint}`;
+    
+    const url = `${ PORT }/${ endpoint }`;
     const token = localStorage.getItem('token') || '';
 
     if (method === 'GET') {

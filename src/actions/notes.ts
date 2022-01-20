@@ -5,11 +5,10 @@ import { INotes } from '../reducers/notesReducers';
 export const startLoadingNotes = () => {
     return async (dispatch: any) => {
         try {
-            localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MWUwY2QzMDUwNGNmNDcwZTEyODk4ZTQiLCJpYXQiOjE2NDI0OTM0MjMsImV4cCI6MTY0MjU3OTgyM30.ArDPlyKZIS0fRIqmcbUnUOg8ewdY3zsYaSWylC5E6ZM');
+            localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MWUwY2QzMDUwNGNmNDcwZTEyODk4ZTQiLCJpYXQiOjE2NDI2NDU4MjgsImV4cCI6MTY0MjczMjIyOH0.XNATlWP1wVuvbYIjxPibB6P0CLIpoXIrBuViLdJ5U0k');
             const uid = '61e0cd30504cf470e12898e4';
-            const res: any = await fetchToken(`notes/${uid}`);
+            const res: any  = await fetchToken(`notes/${uid}`);
             const body: any = await res.json();
-            console.log('resTwo: ', body);
             
             if (body.ok) {
                 dispatch({ type: 'Load_notes', payload: body.data })
@@ -29,7 +28,7 @@ export const setActiveNote = (note: any) => ({ type: 'Set_active_note', payload:
 export const startUpdatingNote = (note: any) => {
     return async(dispatch: any) => {
         try {
-            localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MWUwY2QzMDUwNGNmNDcwZTEyODk4ZTQiLCJpYXQiOjE2NDI1MjA4MjUsImV4cCI6MTY0MjYwNzIyNX0.p0soIk842VgCmppt4c4bBnEaK7lldHYc-PV0uMjzVrs');
+            localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MWUwY2QzMDUwNGNmNDcwZTEyODk4ZTQiLCJpYXQiOjE2NDI2NDU4MjgsImV4cCI6MTY0MjczMjIyOH0.XNATlWP1wVuvbYIjxPibB6P0CLIpoXIrBuViLdJ5U0k');
             const res: any = await fetchToken(`notes/${ note._id }`, { ...note }, 'PUT');
             const body: any = await res.json();
 
@@ -45,14 +44,45 @@ export const startUpdatingNote = (note: any) => {
     }
 }
 
-// add to do's to notes
+// add to do's of notes
 export const startAddingToDo = ( todo: IToDo ) => {
+    
     return async ( dispatch: any, getState: any ) => {
+
         const { activeNote } = getState().notes;
         const updateNote: INotes = {
             ...activeNote,
-            todolist: [ ...activeNote.todoList, todo ]
+            todolist: [ ...activeNote.todolist, todo ]
         }
-        dispatch( startUpdatingNote(updateNote));
+        
+        dispatch( startUpdatingNote(updateNote) );
+
+    }
+}
+
+// delete to do's of notes
+export const deleteToDo = ( todoItem: any ) => {
+    return async ( dispatch: any, getState: any ) => {
+
+        
+        const { activeNote } = getState().notes;
+        
+        activeNote.todolist.forEach((element: any, idx: any) => {
+            if ( element._id === todoItem._id ) {
+                activeNote.todolist.splice(idx, 1);
+            }
+        });
+        
+        console.log('id item a eliminar: ', todoItem);
+        console.log('lista: ', activeNote);
+        
+
+        const updateNote: INotes = {
+            ...activeNote,
+            todolist: [ ...activeNote.todolist ]
+        }
+        // console.log('se ejecuta el delete', updateNote);
+        dispatch( startUpdatingNote(updateNote) );
+        
     }
 }
