@@ -1,6 +1,5 @@
 import { fetchToken } from '../helpers/fetch';
-import { IToDo } from '../modules/cards/components/Note';
-import { INotes } from '../reducers/notesReducers';
+import { IToDo, INotes } from '../models/todo-models';
 
 export const startLoadingNotes = () => {
     return async (dispatch: any) => {

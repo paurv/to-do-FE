@@ -1,12 +1,4 @@
-
-export interface INotesState {
-    notes: INotes[]
-}
-export interface INotes {
-    _id?: any;
-    title: string;
-    todolist: Array<any>
-}
+import { INotes } from '../models/todo-models';
 
 interface IState {
     notes: INotes[],

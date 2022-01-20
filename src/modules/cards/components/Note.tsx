@@ -2,12 +2,7 @@ import { Todo } from "./Todo";
 import { SetStateAction, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setActiveNote, startAddingToDo } from "../../../actions/notes";
-import { INotes } from '../../../reducers/notesReducers';
-
-export interface IToDo {
-	desc: string;
-	done: boolean;
-}
+import { INotes } from "../../../models/todo-models";
 
 export const Notes = ({ note }: { note: INotes }) => {
 	
