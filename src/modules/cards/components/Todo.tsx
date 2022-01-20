@@ -14,8 +14,9 @@ export const Todo = ({ initialValue, noteObj, onUpdate = () => { } }: any) => {
 
 	const handleDeleteNote = ( itemToDelete: any ) => {
 
-		dispatch(setActiveNote(noteObj));
+		
 		dispatch(deleteToDo(itemToDelete));
+		dispatch(setActiveNote(noteObj));
 
 	}
 

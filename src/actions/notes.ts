@@ -5,7 +5,7 @@ import { INotes } from '../reducers/notesReducers';
 export const startLoadingNotes = () => {
     return async (dispatch: any) => {
         try {
-            localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MWUwY2QzMDUwNGNmNDcwZTEyODk4ZTQiLCJpYXQiOjE2NDI2NDU4MjgsImV4cCI6MTY0MjczMjIyOH0.XNATlWP1wVuvbYIjxPibB6P0CLIpoXIrBuViLdJ5U0k');
+            localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MWUwY2QzMDUwNGNmNDcwZTEyODk4ZTQiLCJpYXQiOjE2NDI2OTE2ODcsImV4cCI6MTY0Mjc3ODA4N30.uoh9cEubfzmdHaoWC6_9mYDwMZO1bsxApUdnAZ7y0U4');
             const uid = '61e0cd30504cf470e12898e4';
             const res: any  = await fetchToken(`notes/${uid}`);
             const body: any = await res.json();
@@ -28,7 +28,7 @@ export const setActiveNote = (note: any) => ({ type: 'Set_active_note', payload:
 export const startUpdatingNote = (note: any) => {
     return async(dispatch: any) => {
         try {
-            localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MWUwY2QzMDUwNGNmNDcwZTEyODk4ZTQiLCJpYXQiOjE2NDI2NDU4MjgsImV4cCI6MTY0MjczMjIyOH0.XNATlWP1wVuvbYIjxPibB6P0CLIpoXIrBuViLdJ5U0k');
+            localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MWUwY2QzMDUwNGNmNDcwZTEyODk4ZTQiLCJpYXQiOjE2NDI2OTA3NzIsImV4cCI6MTY0Mjc3NzE3Mn0.ovaUaFvdt59jzA0mgR8MWATvGcOkeS3Mq-6QX81xCGI');
             const res: any = await fetchToken(`notes/${ note._id }`, { ...note }, 'PUT');
             const body: any = await res.json();
 

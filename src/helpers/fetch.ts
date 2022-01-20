@@ -1,4 +1,4 @@
-export const PORT = 'http://localhost:8888' || process.env.PORT;
+export const PORT = 'https://todoapp-server101.herokuapp.com' || process.env.PORT;
 
 
 export const fetchData = (endpoint: string, data?: any, method = 'GET') => {
