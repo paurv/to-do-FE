@@ -1,23 +1,21 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
-import { deleteToDo, setActiveNote } from "../../../actions/notes";
+import { deleteToDo, setActiveNote, updateCheck } from '../../../actions/notes';
 
-export const Todo = ({ initialValue, noteObj, toDelete, onUpdate = () => { } }: any) => {
+export const Todo = ({ initialValue, noteObj, selectedItem, onUpdate = () => { } }: any) => {
 	
 	const [todo, setTodo] = useState(initialValue);
 	const dispatch = useDispatch();
 
-	function onCheck(e: any) {
-		console.log('on check: ', e);
+	function handleCheck(e: { target: { checked: any; }; }) {
 		setTodo({ ...todo, done: Boolean(e.target.checked) });
+		dispatch(setActiveNote(noteObj));
+		dispatch(updateCheck(selectedItem))
 	}
 
-	const handleDeleteNote = ( ) => {		
-		console.log('to delete: ', toDelete);
-		
+	const handleDeleteNote = () => {		
 		dispatch(setActiveNote(noteObj));
-		dispatch(deleteToDo(toDelete));
-
+		dispatch(deleteToDo(selectedItem));
 	}
 
 	// usar use selector
@@ -31,7 +29,7 @@ export const Todo = ({ initialValue, noteObj, toDelete, onUpdate = () => { } }: 
 							type="checkbox"
 							value={todo.done.toString()}
 							checked={todo.done}
-							onChange={onCheck}
+							onChange={ handleCheck }
 						/>
 					</div>
 					<div

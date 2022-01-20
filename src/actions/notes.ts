@@ -63,7 +63,6 @@ export const startAddingToDo = ( todo: IToDo ) => {
 // delete to do's of notes
 export const deleteToDo = ( todoItem: any ) => {
     return async ( dispatch: any, getState: any ) => {
-
         
         const { activeNote } = getState().notes;
         activeNote.todolist.forEach((element: any, idx: any) => {
@@ -75,8 +74,24 @@ export const deleteToDo = ( todoItem: any ) => {
             ...activeNote,
             todolist: [ ...activeNote.todolist ]
         }
-
         dispatch( startUpdatingNote(updateNote) );
         
+    }
+}
+
+export const updateCheck = ( todoItem: any ) => {
+    return async ( dispatch: any, getState: any) => {
+        const { activeNote } = getState().notes;
+        activeNote.todolist.forEach((element: any, idx: any) => {
+            if ( element._id === todoItem._id ) {
+                console.log('change check from: ', element);
+                activeNote.todolist[idx].done = !element.done;
+            }
+        });
+        const updateNote: INotes = {
+            ...activeNote,
+            todolist: [ ...activeNote.todolist ]
+        }
+        dispatch( startUpdatingNote(updateNote) );
     }
 }
