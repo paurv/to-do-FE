@@ -52,6 +52,7 @@ export const Notes = ({ note }: { note: INotes }) => {
 									<Todo
 										initialValue={ todo }
 										noteObj={ note }
+										toDelete={ todo }
 										key={ idxToDo }
 									/>
 								))}

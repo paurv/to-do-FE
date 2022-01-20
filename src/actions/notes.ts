@@ -66,22 +66,16 @@ export const deleteToDo = ( todoItem: any ) => {
 
         
         const { activeNote } = getState().notes;
-        
         activeNote.todolist.forEach((element: any, idx: any) => {
             if ( element._id === todoItem._id ) {
                 activeNote.todolist.splice(idx, 1);
             }
         });
-        
-        console.log('id item a eliminar: ', todoItem);
-        console.log('lista: ', activeNote);
-        
-
         const updateNote: INotes = {
             ...activeNote,
             todolist: [ ...activeNote.todolist ]
         }
-        // console.log('se ejecuta el delete', updateNote);
+
         dispatch( startUpdatingNote(updateNote) );
         
     }

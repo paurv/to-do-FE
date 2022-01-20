@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { deleteToDo, setActiveNote } from "../../../actions/notes";
 
-export const Todo = ({ initialValue, noteObj, onUpdate = () => { } }: any) => {
+export const Todo = ({ initialValue, noteObj, toDelete, onUpdate = () => { } }: any) => {
 	
 	const [todo, setTodo] = useState(initialValue);
 	const dispatch = useDispatch();
@@ -12,11 +12,11 @@ export const Todo = ({ initialValue, noteObj, onUpdate = () => { } }: any) => {
 		setTodo({ ...todo, done: Boolean(e.target.checked) });
 	}
 
-	const handleDeleteNote = ( itemToDelete: any ) => {
-
+	const handleDeleteNote = ( ) => {		
+		console.log('to delete: ', toDelete);
 		
-		dispatch(deleteToDo(itemToDelete));
 		dispatch(setActiveNote(noteObj));
+		dispatch(deleteToDo(toDelete));
 
 	}
 
@@ -45,7 +45,7 @@ export const Todo = ({ initialValue, noteObj, onUpdate = () => { } }: any) => {
 				<button 
 					type="button" 
 					className="btn btn-light btn-sm"
-					onClick={ () => {handleDeleteNote(todo)} }
+					onClick={ handleDeleteNote }
 				>
 					<i className="bi bi-x"></i>
 				</button>
