@@ -115,3 +115,11 @@ button {
   /* opacity: 0;
   transition: visibility 0s 2s, opacity 2s linear; */
 }
+
+.navbar-collapse {
+  flex-basis: 0 !important;
+}
+
+.navbar-nav {
+  display: -webkit-inline-box !important;
+}
