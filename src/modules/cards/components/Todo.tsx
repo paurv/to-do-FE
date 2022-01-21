@@ -4,11 +4,9 @@ import { deleteToDo, setActiveNote, updateCheck, startLoadingNotes } from '../..
 import { useEffect } from 'react';
 
 export const Todo = ({ initialValue, noteObj, selectedItem, onUpdate = () => { } }: any) => {
-	
 	const [todo, setTodo] = useState(initialValue);
 	const dispatch = useDispatch();
 
-	
 	function handleCheck(e: { target: { checked: any; }; }) {
 		setTodo({ ...todo, done: Boolean(e.target.checked) });
 		dispatch(setActiveNote(noteObj));
@@ -24,7 +22,6 @@ export const Todo = ({ initialValue, noteObj, selectedItem, onUpdate = () => { }
 		dispatch(startLoadingNotes());
 	}, [dispatch]);
 
-	// usar use selector
 	return (
 		<div className="d-flex flex-row">
 			<div className="me-auto d-flex">
@@ -39,10 +36,8 @@ export const Todo = ({ initialValue, noteObj, selectedItem, onUpdate = () => { }
 						/>
 					</div>
 					<div
-						// className={'flex-grow-1 text-wrap wrap-todo ' + (todo.done === true ? "text-decoration-line-through" : "")}
 						className={'flex-grow-1 text-wrap wrap-todo ' + (initialValue?.done === true ? "text-decoration-line-through" : "")}
 					>
-						{/* {todo.desc} */}
 						{initialValue?.desc}
 					</div>
 				</label>

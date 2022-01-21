@@ -1,15 +1,14 @@
-import React from 'react'
-import 'animate.css';
+import React, { useState, SetStateAction } from 'react'
 import { useDispatch } from 'react-redux';
+import 'animate.css';
+
 import { startAddingNote } from '../../../actions/notes';
-import { useState, SetStateAction } from 'react';
 
 export const Modal = ({ handleClose, show, children }: any, onClose = () => { }) => {
     const dispatch = useDispatch();
     const [noteTitle, setnoteTitle] = useState('');
     let showHideClassName = show ? "modal display-block animate__animated animate__fadeIn" : "modal display-none animate__animated animate__fadeOut";
 
-    
     function handleChange(event: { target: { value: SetStateAction<string> } }) {
 		setnoteTitle(event.target.value);
 	}
@@ -47,8 +46,6 @@ export const Modal = ({ handleClose, show, children }: any, onClose = () => { })
                                     </input>
                                 </div>
                             </div>
-                        {/* <div>
-                        </div> */}
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={ handleClose }>Close</button>
