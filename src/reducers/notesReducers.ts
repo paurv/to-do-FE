@@ -1,12 +1,4 @@
-
-export interface INotesState {
-    notes: INotes[]
-}
-export interface INotes {
-    _id?: any;
-    title: string;
-    todolist: Array<any>
-}
+import { INotes } from '../models/todo-models';
 
 interface IState {
     notes: INotes[],
@@ -18,7 +10,7 @@ const initialState = {
     activeNote: null
 }
 
-type Action = { type: 'Add_note', payload: string } 
+type Action = { type: 'Add_note', payload: INotes } 
             | { type: 'Set_active_note', payload: INotes }
             | { type: 'Update_note', payload: INotes }
             | {type: 'Load_notes', payload: INotes[] };

@@ -1,6 +1,5 @@
 import { fetchToken } from '../helpers/fetch';
-import { IToDo } from '../modules/cards/components/Note';
-import { INotes } from '../reducers/notesReducers';
+import { IToDo, INotes } from '../models/todo-models';
 
 export const startLoadingNotes = () => {
     return async (dispatch: any) => {
@@ -31,7 +30,6 @@ export const startUpdatingNote = (note: any) => {
             localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MWUwY2QzMDUwNGNmNDcwZTEyODk4ZTQiLCJpYXQiOjE2NDI2OTA3NzIsImV4cCI6MTY0Mjc3NzE3Mn0.ovaUaFvdt59jzA0mgR8MWATvGcOkeS3Mq-6QX81xCGI');
             const res: any = await fetchToken(`notes/${ note._id }`, { ...note }, 'PUT');
             const body: any = await res.json();
-
             if (body['ok']) {
                 dispatch({ type: 'Update_note', payload: body.data });
             } else {
@@ -40,6 +38,24 @@ export const startUpdatingNote = (note: any) => {
 
         } catch (e) {
             console.log('Error getting notes data: ', e);
+        }
+    }
+}
+
+export const startAddingNote = (newNote: any) => {
+    return async( dispatch: any) => {
+        try {
+            const res: any = await fetchToken(`notes`, newNote, 'POST');
+            const body: any = await res.json();
+            console.log('new data: ', body);
+            if (body['ok']) {
+                dispatch({ type: 'Add_note', payload: body.data });
+            } else {
+                throw 'Error adding notes'; // eslint-disable-line no-throw-literal
+            }
+        }
+        catch ( e ) {
+            console.log(e);
         }
     }
 }
@@ -59,6 +75,16 @@ export const startAddingToDo = ( todo: IToDo ) => {
 
     }
 }
+
+// export const startAddingNotes = ( note: any, notes: any ) => {
+//     return async ( dispatch: any, getState: any ) => {
+//         const update = {
+//             todolist: [ ...notes, note ]
+//         }
+//         console.log('update: ', update);
+        
+//     }
+// }
 
 // delete to do's of notes
 export const deleteToDo = ( todoItem: any ) => {
