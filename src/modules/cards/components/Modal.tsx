@@ -20,9 +20,9 @@ export const Modal = ({ handleClose, show, children }: any, onClose = () => { })
             title: noteTitle,
             todolist: []
         }
-        console.log('data', data);
         dispatch(startAddingNote(data));
         handleClose();
+        setnoteTitle('');
     }
 
     return (
