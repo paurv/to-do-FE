@@ -62,34 +62,19 @@ export const startAddingNote = (newNote: any) => {
 
 // add to do's of notes
 export const startAddingToDo = ( todo: IToDo ) => {
-    
     return async ( dispatch: any, getState: any ) => {
-
         const { activeNote } = getState().notes;
         const updateNote: INotes = {
             ...activeNote,
             todolist: [ ...activeNote.todolist, todo ]
         }
-        
         dispatch( startUpdatingNote(updateNote) );
-
     }
 }
-
-// export const startAddingNotes = ( note: any, notes: any ) => {
-//     return async ( dispatch: any, getState: any ) => {
-//         const update = {
-//             todolist: [ ...notes, note ]
-//         }
-//         console.log('update: ', update);
-        
-//     }
-// }
 
 // delete to do's of notes
 export const deleteToDo = ( todoItem: any ) => {
     return async ( dispatch: any, getState: any ) => {
-        
         const { activeNote } = getState().notes;
         activeNote.todolist.forEach((element: any, idx: any) => {
             if ( element._id === todoItem._id ) {

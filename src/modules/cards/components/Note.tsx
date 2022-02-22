@@ -5,7 +5,6 @@ import { setActiveNote, startAddingToDo } from "../../../actions/notes";
 import { INotes } from "../../../models/todo-models";
 
 export const Notes = ({ note }: { note: INotes }) => {
-	
 	const [description, setDescription] = useState('');
 	const dispatch = useDispatch();
 
@@ -14,14 +13,11 @@ export const Notes = ({ note }: { note: INotes }) => {
 	}
 
 	const handleAdd = ( description: string, note: any ) => {
-
 		if ( description === '' ) { return }
 		dispatch(setActiveNote(note));
 		const newData = { desc: description, done: false };
 		dispatch(startAddingToDo(newData));
-		
 		setDescription('');
-
 	}
 
 	return (

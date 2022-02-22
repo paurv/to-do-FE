@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// // import reportWebVitals from './reportWebVitals';
 import { ToDoApp } from './ToDoApp';
 import { Provider } from 'react-redux';
 import { store } from './services/store';
@@ -19,5 +18,3 @@ ReactDOM.render(
 	</React.StrictMode>, divRoot
 
 );
-
-// // reportWebVitals();
